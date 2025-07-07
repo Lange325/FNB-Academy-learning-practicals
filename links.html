@@ -1,0 +1,51 @@
+<html>
+<head>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+            <div id="menu-bar">
+               <a href="home.html">Home</a>
+               <a href="#">About us</a>
+               <a href="#">Contact us</a>
+            </div>
+
+            <p>Please <a href="http://www.compukids.me"> click here</a> to go to the Compukids website</p>
+//Password input for users
+            <p id="output"></p>
+         <script>
+            var userInputpassword = "018";
+            var actualPassword = "007";
+
+            if (userInputPassword == actualPassword){
+                document.getElementById("output"). innerHTML= ("Correct password");
+            } else{
+                document.getElementById("output"). innerHTML= ("Incorrect password. Try again");
+            }
+        </script>  
+//functions
+
+        <h1 onclick ="changeText()">JavaScript</h1>
+        <p id="addition"></p>
+    <script>
+        document.getElementById("addition").innerHTML=addNumbers(5,20);
+
+        function changeText(){ 
+              if (document.getElementById("heading").innerHTML=='JavaScript'){
+                document.getElementById("heading").innerHTML='is awesome'
+            }     
+            else{
+                document.getElementById("heading").innerHTML='JavaScript'}
+            }
+        function addNumbers(num1,num2){
+            return num1 + num2;
+             
+        }
+
+    </script>
+
+     
+</body>
+
+
+
+</html>

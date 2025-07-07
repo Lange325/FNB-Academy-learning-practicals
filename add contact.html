@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add contact</title>
+</head>
+<body>
+    <form id="editForm">
+        <label for="Firstname">First name</label>
+        <input type="text" name="firstname" id="firstname"><br/>
+        <label for="lastname">Last name</label>
+        <input type="text" name="lastname" id="lastname"><br/>
+        <label for="mobile">Mobile</label>
+        <input type="text" name="mobile" id="mobile"><br/>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email"><br/>
+        <label for="avatar">Select a file</label><br/>
+        <input type="file" name="avatar" id="avatar"><br/>
+        <button type="submit" id="submitForm">Submit</button>
+    </form>
+    <br/><br/>
+    <button id="homeLink" type="button">Home</button>
+    <script src="config.js"></script>
+    <script>
+        var id = getId();
+        console.log("The id is :"+ id);
+        function getId(){
+            var url = window.location.href;
+            var pos = url.search("=");
+            var id = url.slice(pos + 1);
+            return id;
+        }
+        document.getElementById("submitForm").addEventListener('click', submitForm);
+        document.getElementById("homeLink").addEventListener('click', homeLink);
+
+        function submitForm(e){
+            e.preventDefault();
+            const form = new FormData(document.querySelector('#editForm'))
+            form.append('apiKey', apiKey);
+            fetch(rootPath + 'controller/insert-contact/', {
+                method: 'POST',
+                headers: {'Accept': 'application/json,*.*'},
+                body: form
+            })
+            .then(function(response){
+                return response.text();
+            })
+            .then(function(data){
+                if(data =="1"){
+                    alert("Contact added.");
+                    homeLinl();
+                    //link to home page
+                } else{
+                    alert(data);
+                    homeLink();
+                    //Link to home page
+                }
+            })
+        }
+        function homeLink(){
+            window.open("contactbook.html", "_self")
+        }
+    </script>
+</body>
+</html>
